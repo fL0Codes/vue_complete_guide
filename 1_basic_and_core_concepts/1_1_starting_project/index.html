@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@next" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Vue Course Goals</h1>
+  </header>
+  <section id="user-goal">
+    <h2>My Course Goal</h2>
+    <!-- Data binding (actually INTERPOLATION) used in Vue to refere to data within our 
+         data property in the Vue instance that is mounted to this HTML
+         part. -->
+    <p>{{ sMainCourseGoal }}</p>
+    <!-- Here a function of the methods property is called! -->
+    <p>{{ fnRandomCourseGoal() }}</p>
+    <!-- Interpolation can only be used BETWEEN html tags!
+         To be able to bind values to properties of the html tag
+         we need to use the v-bind directice followd by a : and the
+         html tag name! Without {{}} we simply set the data value that
+         should be bound against the tag!
+    -->
+    <!-- In case html based strings need to be printed I can use the
+         v-html directive. However, SECURITY issues (cross-site scripting) 
+         arise, since the code I am getting is executed! -->
+    <span v-html="sHTMLBasedCourseGoal"></span>
+    <p>Learn more about <a v-bind:href="sVueLink">VueJs</a></p>
+  </section>
+</body>
+
+</html>
