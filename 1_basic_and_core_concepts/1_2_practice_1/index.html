@@ -19,6 +19,8 @@
     <p>{{ iAge }}</p>
     <!-- 3) Output your age + 5 -->
     <p>{{ iAge + 5 }}</p>
+    <!-- Alternative to calculating age -->
+    <p>{{ fnCalculateAge(5) }}</p>
     <!-- 4) Output a random number (0 to 1) -->
     <p>Favorite Number: {{ fnCreateRandomNumber() }}</p>
     <p>Favorite Number: {{ Math.random() }}</p>
@@ -27,7 +29,7 @@
       <img v-bind:src="sImageUrl" />
     </div>
     <!-- 6) Prepopulate the input field with your name via the "value" attribute -->
-    <input type="text" v-bind:value="sDefaultValue" />
+    <input type="text" v-bind:value="sName" />
   </section>
 </body>
 
