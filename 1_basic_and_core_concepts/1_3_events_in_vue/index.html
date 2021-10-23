@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@next" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Vue Events</h1>
+  </header>
+  <section id="events">
+    <h2>Events in Action</h2>
+    <!-- v-on directice enables us to listen to every standard
+         event that is available. We simply have to specify
+         the event we want to listen to after the ":" -->
+    <button v-on:click="fnIncrementCounter(10)">Add 10</button>
+    <button v-on:click="fnDecrementCounter(5)">Reduce 5</button>
+    <p v-once>Starting Counter: {{ counter }}</p>
+    <p>Result: {{ counter }}</p>
+    <!-- Event modifiers can be added with a dot to the event specification.
+         With this addition here the method is only called, when the user hits enter
+    -->
+    <input type="text" v-on:input="fnUpdateName" v-on:keyup.enter="fnSetName('Albrecht')">
+    <p>Your Name: {{ sName }}</p>
+
+    <!-- Event modifier used to prevend the default behavior of the form: When button is clicked
+         form is submitted and page reloaded. -->
+    <form v-on:submit.prevent="fnSubmitForm">
+      <input type="text">
+      <button>Submit</button>
+    </form>
+  </section>
+</body>
+
+</html>
