@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@next" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Vue Events</h1>
+  </header>
+  <section id="events">
+    <h2>Events in Action</h2>
+    <!-- For v-on the @ shortcut can be use! -->
+    <button @click="fnAdd(10)">Add 10</button>
+    <button v-on:click="fnReduce(5)">Subtract 5</button>
+    <p>Result: {{ iCounter }}</p>
+    <!-- To reflect two way binding here, Vue offers the v-model directive.
+         This is a combination of v-on:input and v-bind:value.  -->
+    <input type="text" v-model="sFirstName">
+    <input type="text" v-model="sLastName">
+
+    <!-- ATTENTION: NOT the best solution! 
+         Use Case: We not only want to display the first name, we also want
+         to add the last name dynamically. Therefore we can use a method here which adds
+         the last name, everytime the sName variable changes. 
+         This is not ideal because Vue can't know which variables might be affected by bound
+         methods. So even when the counter (above) updates this method gets reexecuted because 
+         of this. -->
+    <p>Your Name: {{ fnOutputFullName() }}</p>
+    <p>Your computed Full Name: {{ sFullName }}</p>
+    <p>Your computed Full Name with Watchers: {{ sName }}</p>
+    <!-- Shortcut for v-bind is just :<property name to be bound>-->
+    <p>Link to Google as test for shortcut binding syntax: <a :href="sLinkToGoogle">Google</a></p>
+    <button v-on:click="fnResetInput">Reset Input</button>
+  </section>
+</body>
+
+</html>
