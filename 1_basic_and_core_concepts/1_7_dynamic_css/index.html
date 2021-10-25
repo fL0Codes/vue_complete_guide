@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vue Basics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://unpkg.com/vue@next" defer></script>
-  <script src="app.js" defer></script>
-</head>
-
-<body>
-  <header>
-    <h1>Vue Dynamic Styling</h1>
-  </header>
-  <section id="styling">
-    <!-- Only for class and style attributes Vue offers a special syntax like the one below: -->
-    <!-- We can either use camelCasing for CSS properties: -->
-    <div @click="fnOnBoxSelected('A')" :style="{borderColor: sBoxSelected === 'A' ? 'red' : '#ccc'}" class="demo"></div>
-    <!-- Or we can use the string syntax:-->
-    <div @click="fnOnBoxSelected('B')" :style="{'border-color': sBoxSelected === 'B' ? 'red' : '#ccc'}" class="demo">
-    </div>
-    <!-- We can also bind the class property dynamically like this. This is also
+  <body>
+    <header>
+      <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling">
+      <!-- Only for class and style attributes Vue offers a special syntax like the one below: -->
+      <!-- We can either use camelCasing for CSS properties: -->
+      <div
+        @click="fnOnBoxSelected('A')"
+        :style="{borderColor: sBoxSelected === 'A' ? 'red' : '#ccc'}"
+        class="demo"
+      ></div>
+      <!-- Or we can use the string syntax:-->
+      <div
+        @click="fnOnBoxSelected('B')"
+        :style="{'border-color': sBoxSelected === 'B' ? 'red' : '#ccc'}"
+        class="demo"
+      ></div>
+      <!-- We can also bind the class property dynamically like this. This is also
          the better approach since the style property is really high in CSS hirarchy and would 
          overrule other CSS stylings. -->
-    <div @click="fnOnBoxSelected('C')" :class="sBoxSelected === 'C' ? 'demo active' : 'demo'"></div>
-    <!-- There is an even better syntax for working with classes in Vue. For default classes on 
+      <div
+        @click="fnOnBoxSelected('C')"
+        :class="sBoxSelected === 'C' ? 'demo active' : 'demo'"
+      ></div>
+      <!-- There is an even better syntax for working with classes in Vue. For default classes on 
          an element, that should not change, we can keep the normal class attribute. If we want
          to add extra classes dynamically, we can use the bind syntax for classes and Vue will merge
          default and dynamic classes together. 
@@ -35,15 +47,22 @@
          and use true/false or any conditional expression that evaluates to true/false to set the classes
          dynamically.
         -->
-    <div @click="fnOnBoxSelected('D')" class="demo" :class="{active: sBoxSelected === 'D' ? true : false}"></div>
+      <div
+        @click="fnOnBoxSelected('D')"
+        class="demo"
+        :class="{active: sBoxSelected === 'D' ? true : false}"
+      ></div>
 
-    <!-- We can also make use of computed properties to make the HTML part more readable -->
-    <div @click="fnOnBoxSelected('E')" class="demo" :class="boxEClasses"></div>
-    <!-- Finally, we can also use the array syntax to populate the class attribute. With this option
+      <!-- We can also make use of computed properties to make the HTML part more readable -->
+      <div
+        @click="fnOnBoxSelected('E')"
+        class="demo"
+        :class="boxEClasses"
+      ></div>
+      <!-- Finally, we can also use the array syntax to populate the class attribute. With this option
          we can define to be added classes as parts of the array. The different parts can either
          be normal classes of conditional expressions -->
-    <div @click="fnOnBoxSelected('F')" :class="['demo', boxFClasses]"></div>
-  </section>
-</body>
-
+      <div @click="fnOnBoxSelected('F')" :class="['demo', boxFClasses]"></div>
+    </section>
+  </body>
 </html>

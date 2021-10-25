@@ -3,7 +3,7 @@ const app = Vue.createApp({
     return {
       sUserInput: "",
       bIsVisible: true,
-      sBackgroundColor: "",
+      sBackgroundColor: ""
     };
   },
   computed: {
@@ -15,13 +15,13 @@ const app = Vue.createApp({
     },
     cpBackgroundColor() {
       return { backgroundColor: this.sBackgroundColor };
-    },
+    }
   },
   methods: {
     fnOnButtonClicked() {
       this.bIsVisible = !this.bIsVisible;
-    },
-  },
+    }
+  }
 });
 
 app.mount("#assignment");

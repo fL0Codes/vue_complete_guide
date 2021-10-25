@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Monster Slayer</h1>
+    </header>
+    <div id="game">
+      <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="cpMonsterHealthBar"></div>
+        </div>
+      </section>
+      <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="cpPlayerHealth"></div>
+        </div>
+      </section>
+      <section v-if="sGameOverText !== ''" class="container">
+        <h2>Game Over!</h2>
+        <h3>{{ sGameOverText }}</h3>
+        <button @click="fnRestartGame">Start New Game</button>
+      </section>
+      <section id="controls" v-else>
+        <button @click="fnAttackMonster">ATTACK</button>
+        <!-- We could also use the disabled property of the button in here! -->
+        <button @click="fnPerformSpecialAttack" :class="cpSpecialAttackEnabled">
+          SPECIAL ATTACK
+        </button>
+        <button @click="fnHealPlayer">HEAL</button>
+        <button @click="fnSurrenderGame">SURRENDER</button>
+      </section>
+      <section id="log" class="container">
+        <h2>Battle Log</h2>
+        <ul>
+          <li v-for="log in aLog" :key="log.key">
+            <p v-if="log.who === 'PLAYER' && log.action === 'ATTACK'">
+              <span class="log--player">{{ log.who }}</span> attacks and deals
+              <span class="log--damage">{{ log.points }}</span>
+            </p>
+            <p v-else-if="log.who === 'PLAYER' && log.action === 'HEALS'">
+              <span class="log--player">{{ log.who }}</span> heals himself
+              <span class="log--heal">{{ log.points }}</span>
+            </p>
+            <p v-else>
+              <span class="log--monster">{{ log.who }}</span> attacks and deals
+              <span class="log--damage">{{ log.points }}</span>
+            </p>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
