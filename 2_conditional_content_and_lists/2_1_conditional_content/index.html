@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@next" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Vue Course Goals</h1>
+  </header>
+  <section id="user-goals">
+    <h2>My course goals</h2>
+    <input type="text" v-model="sGoalText" @keydown.enter="fnAddGoal" />
+    <button @click="fnAddGoal">Add Goal</button>
+
+    <!-- The v-if directive can be used to render content conditionally based on the expression used.
+         The expression must always return a truthy or falsy value so that Vue can evaluate the expression.
+        -->
+    <p v-if="aGoals.length === 0">No goals have been added yet - please start adding some!</p>
+
+    <!-- v-else can be used to render content based on the v-if directive just before the v-else directive.
+         Here we also make use of the v-for directive to render list items based on an array. 
+        -->
+    <ul v-else>
+      <!-- v-for deep dive: 
+           The expression of v-for allows to also get the current index of the loop: 
+           v-for="(goal, index) in aGoals"
+
+           It is further possible to also loop through objects! (see second unordered list)
+      -->
+      <li @click="fnOnGoalPressed(index)" v-for="(sGoal, index) in aGoals" :key="sGoal">{{ sGoal }}</li>
+    </ul>
+
+    <ul>
+      <li v-for="(value, keyname, index) in {name: 'Florian', age: '29'}">{{ keyname }}: {{ value }} ({{ index }})</li>
+    </ul>
+
+    <!-- Finally, we can loop through a range of numbers with v-for -->
+    <ul>
+      <li v-for="num in 5">{{ num }}</li>
+    </ul>
+
+    <!-- v-show also can make use of a conditional expression, however without the possibilibty to 
+         chain expressions like with v-if/v-else-if/v-else! 
+         Why then v-show?! v-show differs from v-if that the content is availble in the DOM
+         but with the display: none css property. Instead, v-if removes the elements from the 
+         DOM completely that should not be shown! 
+         Rule of thumb when to use what: When having elements and their visibility changes a lot
+         use v-show since only the property changes, and not the whole DOM. In case of elements
+         that change less frequently, v-if is fine.
+        -->
+    <p v-show="aGoals.length === 0">Another paragraph manageg via v-show directive and is shown, when no goals were
+      added, yet.</p>
+  </section>
+</body>
+
+</html>
